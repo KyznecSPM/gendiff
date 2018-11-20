@@ -1,0 +1,46 @@
+{
+  "name": "gendif-ed",
+  "version": "1.0.2",
+  "description": "Compares two configuration files and shows a difference.",
+  "main": "index.js",
+  "bin": {
+    "gendiff": "dist/bin/gendiff.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "babel": "babel",
+    "babel-node": "babel-node",
+    "build": "NODE_ENV=production babel src --out-dir dist --source-maps inline",
+    "prepublishOnly": "npm run build",
+    "eslint": "eslint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KyznecSPM/project-lvl2-s369.git"
+  },
+  "author": "EmelianovDO",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KyznecSPM/project-lvl2-s369/issues"
+  },
+  "homepage": "https://github.com/KyznecSPM/project-lvl2-s369#readme",
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "@babel/cli": "^7.1.5",
+    "@babel/core": "^7.1.6",
+    "@babel/node": "^7.0.0",
+    "@babel/preset-env": "^7.1.6",
+    "babel-eslint": "^10.0.1",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "eslint": "^5.9.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-babel": "^5.3.0",
+    "plugin-import": "^1.0.31"
+  },
+  "dependencies": {
+    "commander": "^2.19.0"
+  }
+}

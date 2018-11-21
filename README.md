@@ -8,3 +8,7 @@
 ## Use help:
 
 [![asciicast](https://asciinema.org/a/B1dOviUUfA2LGfWbAWaNtd1gy.svg)](https://asciinema.org/a/B1dOviUUfA2LGfWbAWaNtd1gy)
+
+## how use gendiff JSON
+
+[![asciicast](https://asciinema.org/a/avtaUksJlWhoHxV1uKoIvZj4k.svg)](https://asciinema.org/a/avtaUksJlWhoHxV1uKoIvZj4k)

@@ -1,25 +1,31 @@
+import { has, union } from 'lodash';
+import path from 'path';
 import fs from 'fs';
-import { has } from 'lodash';
+import parsers from './parsers';
 
-const compare = (file1, file2) => {
-  const parseFile1 = JSON.parse(fs.readFileSync(file1, 'utf-8'));
-  const parseFile2 = JSON.parse(fs.readFileSync(file2, 'utf-8'));
-
-  const deletedItems = Object.keys(parseFile1).reduce((acc, key) => (!has(parseFile2, key) ? [...acc, `  - ${key}: ${parseFile1[key]}`] : [...acc]), []);
-
-  const changedItems = Object.keys(parseFile2).reduce((acc, key) => {
-    if (has(parseFile1, key)) {
-      return parseFile1[key] === parseFile2[key] ? [...acc, `    ${key}: ${parseFile1[key]}`] : [...acc, `  - ${key}: ${parseFile1[key]}`, `  + ${key}: ${parseFile2[key]}`];
-    }
-
-    return [...acc, `  + ${key}: ${parseFile2[key]}`];
-  }, []);
-
-  const resultItems = changedItems.concat(deletedItems);
-
-  return resultItems;
+const fileParse = (pathFile) => {
+  const type = path.extname(pathFile);
+  const parse = parsers(type);
+  return parse(fs.readFileSync(pathFile, 'utf-8'));
 };
 
-const dataToCLI = items => `{\n${items.map(el => `${el}\n`).join('')}}`;
+const compare = (pathFile1, pathFile2) => {
+  const parsedFile1 = fileParse(pathFile1);
+  const parsedFile2 = fileParse(pathFile2);
+  const filesKeys = union(Object.keys(parsedFile1), Object.keys(parsedFile2));
 
-export default (file1, file2) => dataToCLI(compare(file1, file2));
+  const result = filesKeys.reduce((acc, key) => {
+    if (has(parsedFile1, key) && has(parsedFile2, key)) {
+      return parsedFile1[key] === parsedFile2[key] ? [...acc, `    ${key}: ${parsedFile1[key]}`] : [...acc, `  - ${key}: ${parsedFile1[key]}`, `  + ${key}: ${parsedFile2[key]}`];
+    }
+    if (has(parsedFile1, key) && !has(parsedFile2, key)) {
+      return [...acc, `  - ${key}: ${parsedFile1[key]}`];
+    }
+    return [...acc, `  + ${key}: ${parsedFile2[key]}`];
+  }, []);
+  return result;
+};
+
+const dataToCLI = items => `{\n${items.map(el => `${el}\n`).join('')}}\n`;
+
+export default (pathFile1, pathFile2) => dataToCLI(compare(pathFile1, pathFile2));

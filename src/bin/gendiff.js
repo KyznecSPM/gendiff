@@ -9,5 +9,5 @@ commander
   .description(description)
   .option('-f, --format [type]', 'output format')
   .arguments('<firstConfig> <secondConfig>')
-  .action((filePath1, filePath2) => console.log(genDiff(filePath1, filePath2)))
+  .action((pathFile1, pathFile2) => console.log(genDiff(pathFile1, pathFile2)))
   .parse(process.argv);

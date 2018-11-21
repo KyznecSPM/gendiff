@@ -12,3 +12,7 @@
 ## how use gendiff JSON
 
 [![asciicast](https://asciinema.org/a/avtaUksJlWhoHxV1uKoIvZj4k.svg)](https://asciinema.org/a/avtaUksJlWhoHxV1uKoIvZj4k)
+
+## how use gendiff YAML
+
+[![asciicast](https://asciinema.org/a/9O3iED25lP3VNhSvGIxJPNj3U.svg)](https://asciinema.org/a/9O3iED25lP3VNhSvGIxJPNj3U)

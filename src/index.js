@@ -1,9 +1,23 @@
 import fs from 'fs';
 import { has } from 'lodash';
+import yaml from 'js-yaml';
+import path from 'path';
+
+const parsers = {
+  '.json': JSON.parse,
+  '.yaml': yaml.safeLoad,
+  '.yml': yaml.safeLoad,
+};
+
+const fileParser = (file) => {
+  const type = path.extname(file);
+  const parser = parsers[type];
+  return parser(fs.readFileSync(file, 'utf-8'));
+};
 
 const compare = (file1, file2) => {
-  const parseFile1 = JSON.parse(fs.readFileSync(file1, 'utf-8'));
-  const parseFile2 = JSON.parse(fs.readFileSync(file2, 'utf-8'));
+  const parseFile1 = fileParser(file1);
+  const parseFile2 = fileParser(file2);
 
   const deletedItems = Object.keys(parseFile1).reduce((acc, key) => (!has(parseFile2, key) ? [...acc, `  - ${key}: ${parseFile1[key]}`] : [...acc]), []);
 
@@ -20,6 +34,6 @@ const compare = (file1, file2) => {
   return resultItems;
 };
 
-const dataToCLI = items => `{\n${items.map(el => `${el}\n`).join('')}}`;
+const dataToCLI = items => `{\n${items.map(el => `${el}\n`).join('')}}\n`;
 
 export default (file1, file2) => dataToCLI(compare(file1, file2));

@@ -1,7 +1,6 @@
 import fs from 'fs';
 import gendiff from '../src';
 
-
 test('gendiff JSON', () => {
   const JSONBefore = './__tests__/__fixtures__/before.json';
   const JSONAfter = './__tests__/__fixtures__/after.json';

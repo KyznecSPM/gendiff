@@ -20,3 +20,7 @@
 ## how use gendiff INI
 
 [![asciicast](https://asciinema.org/a/8WzNCr10ZwHm6i46fxVR7OB5L.svg)](https://asciinema.org/a/8WzNCr10ZwHm6i46fxVR7OB5L)
+
+## nested structure
+
+[![asciicast](https://asciinema.org/a/oo2I1rDOWBE93EonGyqDv9hyJ.svg)](https://asciinema.org/a/oo2I1rDOWBE93EonGyqDv9hyJ)

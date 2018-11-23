@@ -1,7 +1,8 @@
-import { has, union } from 'lodash';
-import path from 'path';
 import fs from 'fs';
+import path from 'path';
 import parsers from './parsers';
+import buildAST from './astBuilder';
+import render from './render';
 
 const fileParse = (pathFile) => {
   const type = path.extname(pathFile);
@@ -9,23 +10,9 @@ const fileParse = (pathFile) => {
   return parse(fs.readFileSync(pathFile, 'utf-8'));
 };
 
-const compare = (pathFile1, pathFile2) => {
+export default (pathFile1, pathFile2) => {
   const parsedFile1 = fileParse(pathFile1);
   const parsedFile2 = fileParse(pathFile2);
-  const filesKeys = union(Object.keys(parsedFile1), Object.keys(parsedFile2));
-
-  const result = filesKeys.reduce((acc, key) => {
-    if (has(parsedFile1, key) && has(parsedFile2, key)) {
-      return parsedFile1[key] === parsedFile2[key] ? [...acc, `    ${key}: ${parsedFile1[key]}`] : [...acc, `  - ${key}: ${parsedFile1[key]}`, `  + ${key}: ${parsedFile2[key]}`];
-    }
-    if (has(parsedFile1, key) && !has(parsedFile2, key)) {
-      return [...acc, `  - ${key}: ${parsedFile1[key]}`];
-    }
-    return [...acc, `  + ${key}: ${parsedFile2[key]}`];
-  }, []);
-  return result;
+  const diffAST = buildAST(parsedFile1, parsedFile2);
+  return render(diffAST);
 };
-
-const dataToCLI = items => `{\n${items.map(el => `${el}\n`).join('')}}\n`;
-
-export default (pathFile1, pathFile2) => dataToCLI(compare(pathFile1, pathFile2));

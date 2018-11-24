@@ -24,3 +24,7 @@
 ## nested structure
 
 [![asciicast](https://asciinema.org/a/oo2I1rDOWBE93EonGyqDv9hyJ.svg)](https://asciinema.org/a/oo2I1rDOWBE93EonGyqDv9hyJ)
+
+## export to plaine format
+
+[![asciicast](https://asciinema.org/a/fUfnKeU1cIgqtyfPWJgfioh3d.svg)](https://asciinema.org/a/fUfnKeU1cIgqtyfPWJgfioh3d)

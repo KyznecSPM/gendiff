@@ -34,7 +34,7 @@ const nodeToStringManager = {
 
 const render = (diff, numTab = 1) => {
   const stringifiedDiff = _.flatten(diff.map(
-    node => nodeToStringManager[node.status](node, numTab, render),
+    node => nodeToStringManager[node.type](node, numTab, render),
   ));
   return curlyWrap(stringifiedDiff.join('\n'), numTab).concat('\n');
 };

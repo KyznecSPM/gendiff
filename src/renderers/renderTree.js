@@ -36,6 +36,6 @@ const render = (diff, numTab = 1) => {
   const stringifiedDiff = _.flatten(diff.map(
     node => nodeToStringManager[node.type](node, numTab, render),
   ));
-  return curlyWrap(stringifiedDiff.join('\n'), numTab).concat('\n');
+  return curlyWrap(stringifiedDiff.join('\n'), numTab); // .concat('\n')
 };
 export default render;

@@ -18,7 +18,7 @@ const nodeToString = (node, parent, fnRender) => {
 
 const renderPlain = (diff, parent = '') => {
   const stringifiedDiff = diff.map(node => nodeToString(node, parent, renderPlain)).join('\n');
-  return stringifiedDiff.concat('\n');
+  return stringifiedDiff;
 };
 
 export default renderPlain;

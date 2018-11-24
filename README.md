@@ -28,3 +28,7 @@
 ## export to plaine format
 
 [![asciicast](https://asciinema.org/a/fUfnKeU1cIgqtyfPWJgfioh3d.svg)](https://asciinema.org/a/fUfnKeU1cIgqtyfPWJgfioh3d)
+
+## export to JSON format
+
+[![asciicast](https://asciinema.org/a/YJytHSTWHppaVaDDZdTLFNdCR.svg)](https://asciinema.org/a/YJytHSTWHppaVaDDZdTLFNdCR)

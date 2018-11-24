@@ -10,14 +10,12 @@
             key: value
           + ops: vops
         }
-
       + follow: false
       + setting4: blah blah
       + setting5: {
             key5: value5
         }
     }
-
     group1: {
       - baz: bas
       + baz: bars
@@ -27,7 +25,6 @@
         }
       + nest: str
     }
-
   - group2: {
         abc: 12345
     }

@@ -1,23 +1,27 @@
 import fs from 'fs';
 import gendiff from '../src';
 
+const pathBefore = './__tests__/__fixtures__/beforeAST';
+const pathAfter = './__tests__/__fixtures__/afterAST';
+const expectedAST = './__tests__/__fixtures__/expectedAST.txt';
+
 test('gendiff AST JSON', () => {
-  const astJSONBefore = './__tests__/__fixtures__/beforeAST.json';
-  const astJSONAfter = './__tests__/__fixtures__/afterAST.json';
-  const astExpected = fs.readFileSync('./__tests__/__fixtures__/expectedAST.txt', 'utf-8');
+  const astJSONBefore = `${pathBefore}.json`;
+  const astJSONAfter = `${pathAfter}.json`;
+  const astExpected = fs.readFileSync(expectedAST, 'utf-8');
   expect(gendiff(astJSONBefore, astJSONAfter)).toEqual(astExpected);
 });
 
 test('gendiff AST YAML', () => {
-  const astYAMLBefore = './__tests__/__fixtures__/beforeAST.yaml';
-  const astYAMLAfter = './__tests__/__fixtures__/afterAST.yaml';
-  const astExpected = fs.readFileSync('./__tests__/__fixtures__/expectedAST.txt', 'utf-8');
+  const astYAMLBefore = `${pathBefore}.yaml`;
+  const astYAMLAfter = `${pathAfter}.yaml`;
+  const astExpected = fs.readFileSync(expectedAST, 'utf-8');
   expect(gendiff(astYAMLBefore, astYAMLAfter)).toEqual(astExpected);
 });
 
 test('gendiff AST INI', () => {
-  const astINIBefore = './__tests__/__fixtures__/beforeAST.ini';
-  const astINIAfter = './__tests__/__fixtures__/afterAST.ini';
-  const astExpected = fs.readFileSync('./__tests__/__fixtures__/expectedAST.txt', 'utf-8');
+  const astINIBefore = `${pathBefore}.ini`;
+  const astINIAfter = `${pathAfter}.ini`;
+  const astExpected = fs.readFileSync(expectedAST, 'utf-8');
   expect(gendiff(astINIBefore, astINIAfter)).toEqual(astExpected);
 });
